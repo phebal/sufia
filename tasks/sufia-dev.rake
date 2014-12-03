@@ -16,7 +16,19 @@ task ci: ['engine_cart:generate', 'jetty:clean', 'sufia:jetty:config'] do
   raise "test failures: #{error}" if error
 end
 
-namespace 'engine_cart' do
+EXTRA_GEMS =<<EOF
+gem 'active-fedora', '8.0.0.rc2'
+gem 'hydra-head', github: 'projecthydra/hydra-head'
+EOF
+
+namespace :engine_cart do
   desc 'Regenerate embedded app for testing'
   task regenerate: ['engine_cart:clean', 'engine_cart:generate']
+
+  # we're adding some extra stuff into the gemfile beyond what engine_cart gives us by default
+  task :inject_gemfile_extras do
+    open(File.expand_path('Gemfile', EngineCart.destination), 'a') do |f|
+      f.write EXTRA_GEMS
+    end
+  end
 end

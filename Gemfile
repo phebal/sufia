@@ -7,6 +7,8 @@ gemspec
 gem 'kaminari', github: 'harai/kaminari', branch: 'route_prefix_prototype'
 gem 'sufia-models', path: './sufia-models'
 gem 'sass-rails', '~> 4.0.3'
+gem 'active-fedora', '8.0.0.rc2'
+gem 'hydra-head', github: 'projecthydra/hydra-head'
 
 group :development, :test do
   gem "simplecov", require: false
