@@ -18,7 +18,6 @@ end
 
 EXTRA_GEMS =<<EOF
 gem 'active-fedora', '8.0.0.rc2'
-gem 'hydra-head', github: 'projecthydra/hydra-head'
 EOF
 
 namespace :engine_cart do
