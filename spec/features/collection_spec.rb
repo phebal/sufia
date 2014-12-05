@@ -40,7 +40,6 @@ describe 'collection', :type => :feature do
   describe 'create collection' do
     before do
       sign_in user
-      visit '/dashboard/collections'
     end
     it "should create collection from the dashboard and include files", js: true do
       create_collection(title2, description2)

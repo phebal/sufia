@@ -20,7 +20,6 @@ describe 'catalog/index.html.erb', :type => :view do
     allow(resp).to receive(:empty?).and_return(false)
 
     @collection = Collection.new(pid: 'sufia:foo', title: 'collection1')
-    puts "TO SOLR #{@collection.to_solr}"
     doc = SolrDocument.new(@collection.to_solr.merge('has_model_ssim' => [Collection.to_class_uri]))
     assign(:document_list, [doc])
   end

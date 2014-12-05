@@ -1,5 +1,9 @@
       <div <% if index == 0%> id="additional_<%= key.to_s %>_clone" <% end %>>
-        <%= f.select "rights", options_for_select(Sufia.config.cc_licenses, v), include_blank: true %>
+        <% if f.object.class.multiple?(key) %>
+          <%= select_tag "rights", options_for_select(Sufia.config.cc_licenses, v), name: "#{ActiveModel::Naming.singular(f.object)}[#{key.to_s}][]", id: "#{ActiveModel::Naming.singular(f.object)}_#{key.to_s}", include_blank: true %>
+        <% else %>
+          <%= f.select "rights", options_for_select(Sufia.config.cc_licenses, v), include_blank: true %>
+        <% end %>
         <%= render partial: "records/edit_fields/suffix", locals: { key: key, index: index } %>
       </div>
       <div id="additional_<%= key %>_elements"></div>

@@ -17,7 +17,11 @@ module Sufia
       def initialize_fields
         terms_for_editing.each do |key|
           # if value is empty, we create an one element array to loop over for output
-          self[key] = [''] if self[key].empty?
+          if self.class.multiple?(key)
+            self[key] = [''] if self[key].empty?
+          else
+            self[key] = '' unless self[key]
+          end
         end
       end
 
