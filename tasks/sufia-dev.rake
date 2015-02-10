@@ -6,6 +6,8 @@ require 'jettywrapper'
 
 require 'engine_cart/rake_task'
 
+Jettywrapper.url = "https://github.com/projecthydra/hydra-jetty/archive/master.zip"
+
 desc 'Spin up hydra-jetty and run specs'
 task ci: ['engine_cart:generate', 'jetty:clean', 'sufia:jetty:config'] do
   puts 'running continuous integration'
