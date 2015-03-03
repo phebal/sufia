@@ -8,6 +8,16 @@ describe GenericFile, :type => :model do
     @file.apply_depositor_metadata(user.user_key)
   end
 
+  it 'is initialized with blanks' do
+    subject.attributes.each do |k,v|
+      if v.is_a?(Array)
+        expect(v).to eq([])
+      else
+        expect(v).to be(nil)
+      end
+    end
+  end
+
   describe "created for someone (proxy)" do
     before do
       @transfer_to = FactoryGirl.find_or_create(:jill)
